@@ -5,7 +5,6 @@
  */
 package proyecto.appweb.config;
 
-
 import proyecto.appweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +25,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    
-    
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -38,7 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService mongoUserDetails() {
         return new UserService();
     }
-    
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

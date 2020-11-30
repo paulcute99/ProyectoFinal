@@ -5,10 +5,14 @@
  */
 package proyecto.appweb.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import proyecto.appweb.model.Student    ;
 
 /**
  *
@@ -19,16 +23,20 @@ public class Course {
 
     @Id
     private String id;
-
-    @Size(min = 1, max = 50, message = "El nombre debe tener entre 1 y 50 caracteres")
+    
     private String nombre;
 
-    @NotNull(message = "Debes especificar la seccion del curso")
-    @Size(min = 1, max = 50, message = "La seccion debe tener entre 1 y 50 caracteres")
     private String seccion;
+   
+    private List<Student> estudiantes = new ArrayList<>();
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public void setEstudiantes(List<Student> estudiantes) {
+        this.estudiantes = estudiantes;
     }
 
     public void setNombre(String nombre) {
@@ -45,6 +53,10 @@ public class Course {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public List<Student> getEstudiantes() {
+        return estudiantes;
     }
 
     public String getSeccion() {

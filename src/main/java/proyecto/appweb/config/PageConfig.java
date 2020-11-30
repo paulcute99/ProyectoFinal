@@ -16,7 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Paul
  */
 @Configuration
-public class PageConfig  implements WebMvcConfigurer{
+public class PageConfig implements WebMvcConfigurer {
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -28,6 +29,7 @@ public class PageConfig  implements WebMvcConfigurer{
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/formularios-curso").setViewName("formularios-curso");
+        registry.addViewController("/formularios-curso/students/{id}").setViewName("alumnos");
         registry.addViewController("/login").setViewName("login");
     }
 

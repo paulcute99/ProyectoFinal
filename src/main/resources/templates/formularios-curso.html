@@ -67,7 +67,7 @@
                                 <td th:text="${curso.nombre}" th:field="*{nombre}"></td>
                                 <td th:text="${curso.seccion}" th:field="*{seccion}"></td>
                                 <td>
-                                    <form th:action="@{/edit}" method="post">
+                                    <form th:action="@{'/edit'+${curso.id}}" method="get">
                                         <input type="hidden" name="id" th:value="${curso.id}" />
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                             data-target="#modalEditarCurso">Editar</a>
@@ -75,12 +75,13 @@
                                 </td>
                                 <td>
                                     <form th:action="@{/delete}" method="post">
-                                        <input type="hidden" name="id" th:value="${curso.id}"/>
+                                        <input type="hidden" name="id" th:value="${curso.id}" />
                                         <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success" type="submit">Ver alumnos</a>
+                                    <a class="btn btn-success" th:href="@{'/formularios-curso/students/'+ ${curso.id}}">Ver alumnos</a>
+
                                 </td>
                             </tr>
                         </tbody>
@@ -131,8 +132,9 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <!-- Modal body -->
-                    <form th:object="${curso}">
+                    <form  th:action="@{'/edit/'+${curso.id}}" method="post" th:object="${curso}">
                         <div class="modal-body">
+                            <input type="hidden" name="id" th:value="${curso.id}"/>
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" placeholder="Nombre del curso" required=""

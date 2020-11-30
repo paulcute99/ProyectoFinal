@@ -5,7 +5,7 @@
  */
 package proyecto.appweb.repository;
 
-import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import proyecto.appweb.model.Course;
 
@@ -14,7 +14,7 @@ import proyecto.appweb.model.Course;
  * @author Paul
  */
 public interface CourseRepository extends MongoRepository<Course, String> {
-
+    
     Course findByNombre(String nombre);
     
     Course findFirstById(String id);

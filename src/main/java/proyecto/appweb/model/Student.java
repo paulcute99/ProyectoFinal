@@ -1,0 +1,78 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package proyecto.appweb.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import proyecto.appweb.model.Note;
+
+/**
+ *
+ * @author Paul
+ */
+@Document(collection = "student")
+public class Student {
+
+    @Id
+    private String id;
+
+    @Field("nombre")
+    private String nombre;
+
+    @Field("apellido")
+    private String apellido;
+
+    @Field("DNI")
+    private String DNI;
+
+    @Field("Notes")
+    private List<Note> note = new ArrayList<>();
+
+    public void setNote(List<Note> note) {
+        this.note = note;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public List<Note> getNote() {
+        return note;
+    }
+
+}
