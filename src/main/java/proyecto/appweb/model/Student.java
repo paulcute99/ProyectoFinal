@@ -31,7 +31,7 @@ public class Student {
     @Field("DNI")
     private String DNI;
 
-    @Field("notes")
+    @Field("Notas")
     private List<Note> note = new ArrayList<>();
 
     public void setNote(List<Note> note) {
