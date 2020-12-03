@@ -47,39 +47,34 @@
     <!--Tabla de cursos-->
     <div class="container">
         <div class="col-12">
-            <h2>ESTUDIANTES</h2>
+            <h2>Notas</h2>
             <button class="btn btn-success mb-2" data-toggle="modal"
                 data-target="#modalAgregarEstudiante">Nuevo</button>
             <div class="table-responsive">
-                <form th:object="${student}">
+                <form th:object="${nota}">
                     <table class="table table-dark table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>DNI</th>
+                                <th>Nota del examen</th>
                                 <th>EDITAR</th>
                                 <th>ELIMINAR</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="student : ${students}">
+                            <tr th:each="nota : ${notas}">
                                 <input type="hidden" th:field="*{id}">
-                                <td th:text="${student.nombre}" th:field="*{nombre}"></td>
-                                <td  th:text="${student.apellido}" th:field="*{apellido}"></td>
-                                <td  th:text="${student.DNI}" th:field="*{DNI}"></td>
+                                <td th:text="${nota.nombre}" th:field="*{nombre}"></td>
+                                <td  th:text="${nota.nota}" th:field="*{nota}"></td>
                                 <td>
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
                                         data-target="#modalEditarEstudiante">Editar</a>
                                 </td>
                                 <td>
-                                    <form th:action="@{'/delete-student/' + ${id_curso}}" method="post">
-                                        <input type="hidden" name="id" th:value="${student.id}" />
+                                    <form th:action="@{'/delete-note/' + ${id_estudiante}}" method="post">
+                                        <input type="hidden" name="id" th:value="${nota.id}" />
                                         <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
-                                </td> <td>
-                                    <a class="btn btn-success" th:href="@{'/formularios-curso/notes/'+ ${student.id}}">Ver notas</a>
-
                                 </td>
                             </tr>
                         </tbody>
@@ -98,7 +93,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <!-- Modal body -->
-                    <form th:action="@{'/save-student/'+ ${id_curso}}" method="post" th:object="${student}">
+                    <form th:action="@{'/save-note/'+ ${id_estudiante}}" method="post" th:object="${nota}">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
@@ -106,15 +101,10 @@
                                 th:field="*{nombre}" >
                             </div>
                             <div class="form-group">
-                                <label for="nombre">Apellido</label>
+                                <label for="nombre">Nota</label>
                                 <input type="text" class="form-control" placeholder="Apellido de estudiante"   required=""
-                                th:field="*{apellido}" >
-                            </div>
-                            <div class="form-group">
-                                <label for="nombre">DNI</label>
-                                <input type="text" class="form-control" placeholder="Ej: 67005409V"   required=""
-                                th:field="*{DNI}" >
-                            </div>
+                                th:field="*{nota}" >
+                            </div>  
                             <!-- Modal footer -->
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="submit">Guardar</button>

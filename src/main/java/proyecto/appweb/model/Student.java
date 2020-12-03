@@ -8,7 +8,6 @@ package proyecto.appweb.model;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import proyecto.appweb.model.Note;
@@ -32,7 +31,7 @@ public class Student {
     @Field("DNI")
     private String DNI;
 
-    @Field("Notes")
+    @Field("notes")
     private List<Note> note = new ArrayList<>();
 
     public void setNote(List<Note> note) {
@@ -73,6 +72,11 @@ public class Student {
 
     public List<Note> getNote() {
         return note;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", DNI=" + DNI + ", note=" + note + '}';
     }
 
 }

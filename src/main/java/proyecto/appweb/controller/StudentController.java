@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import proyecto.appweb.model.Course;
 import proyecto.appweb.model.Student;
 import proyecto.appweb.service.StudentService;
 
@@ -28,12 +29,14 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-
     @RequestMapping(path = "/formularios-curso/students/{id}")
-    public String listCourse(@PathVariable("id") String id_curso, Model model, RedirectAttributes redirectAttrs) {
+    public String listStudents(@PathVariable("id") String id_curso, Model model, RedirectAttributes redirectAttrs) {
 
         Student student = new Student();
-        List<Student> students = studentService.listStudent();
+        List<Student> students = studentService.listStudentByCourseId(id_curso);
+        
+       // Course course = studentService.findCourseByName("");
+        
         model.addAttribute("student", student);
         model.addAttribute("students", students);
         model.addAttribute("id_curso", id_curso);
@@ -41,7 +44,7 @@ public class StudentController {
     }
 
     @RequestMapping(path = "/save-student/{id_curso}")
-    public String createNewCourse(@PathVariable String id_curso, @ModelAttribute Student student, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
+    public String createNewStudent(@PathVariable String id_curso, @ModelAttribute Student student, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         Student studentExist = studentService.findStudentByDNI(student.getDNI());
         System.out.print(id_curso);
         if (studentExist != null) {
@@ -59,9 +62,9 @@ public class StudentController {
                             "El DNI del estudiante ya existe");
             return "redirect:/formularios-curso/students/{id_curso}";
         } else {
-            redirectAttrs.addAttribute(student);
-            //studentService.saveStudent(id_curso,student);
-            studentService.saveStudentByid(id_curso, student);
+
+            studentService.saveStudent(student);
+            studentService.addStudent(id_curso, student);
         }
 
         return "redirect:/formularios-curso/students/{id_curso}";
@@ -73,7 +76,9 @@ public class StudentController {
         redirectAttrs
                 .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
                 .addFlashAttribute("clase", "warning");
-        studentService.deleteStudent(student.getId());
+        studentService.removeStudent(id_curso, student);
+        studentService.deleteStudent(student);
+        
 
         return "redirect:/formularios-curso/students/{id_curso}";
     }

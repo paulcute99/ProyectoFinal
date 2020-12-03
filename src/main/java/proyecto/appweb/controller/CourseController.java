@@ -31,9 +31,6 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @Autowired
-    private StudentService studentService;
-
     @RequestMapping(path = "/formularios-curso")
     public String listCourse(Model model) {
         Course course = new Course();
@@ -76,7 +73,7 @@ public class CourseController {
         redirectAttrs
                 .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
                 .addFlashAttribute("clase", "warning");
-        courseService.deleteCourse(course.getId());
+        courseService.deleteCourse(course);
 
         return "redirect:/formularios-curso";
     }

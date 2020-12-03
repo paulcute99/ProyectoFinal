@@ -28,6 +28,7 @@ public class Course {
 
     private String seccion;
    
+    
     private List<Student> estudiantes = new ArrayList<>();
 
     public void setId(String id) {
@@ -61,6 +62,11 @@ public class Course {
 
     public String getSeccion() {
         return seccion;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" + "id=" + id + ", nombre=" + nombre + ", seccion=" + seccion + ", estudiantes=" + estudiantes + '}';
     }
 
 }

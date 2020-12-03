@@ -5,17 +5,45 @@
  */
 package proyecto.appweb.repository;
 
-
-import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
 import proyecto.appweb.model.Course;
 
 /**
  *
  * @author Paul
  */
-public interface CourseRepository extends MongoRepository<Course, String> {
+@Repository
+public class CourseRepository {
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+ 
+    public Course findByName(String nombre){
+       return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("nombre").is(nombre)), Course.class);
+    }
     
-    Course findByNombre(String nombre);
+    public Course save(Course course){
+        return mongoTemplate.save(course);
+    }
     
-    Course findFirstById(String id);
+    public List<Course> getAllCourse(){
+        return mongoTemplate.findAll(Course.class);
+    }
+    
+    public void UpdateCourse(Course course){
+        mongoTemplate.save(course);
+    }
+    
+    public Course findById(String id){
+        return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("id").is(id)), Course.class);
+    }
+    
+    public void deleteCourse(Course course){
+        mongoTemplate.remove(course);
+    }
 }

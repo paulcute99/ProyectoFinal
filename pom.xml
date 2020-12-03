@@ -11,7 +11,7 @@
 	<groupId>proyecto</groupId>
 	<artifactId>appweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>appweb</name>
+	<name>ProyectoPrueba</name>
 	<description>Demo project for Spring Boot</description>
 
 	<dependencies>

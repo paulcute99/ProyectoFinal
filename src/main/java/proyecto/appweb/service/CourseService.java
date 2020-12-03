@@ -6,11 +6,8 @@
 package proyecto.appweb.service;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 import proyecto.appweb.model.Course;
 import proyecto.appweb.repository.CourseRepository;
 
@@ -25,15 +22,15 @@ public class CourseService {
     private CourseRepository courseRepository;
 
     public Course findCouserByName(String nombre) {
-        return courseRepository.findByNombre(nombre);
+        return courseRepository.findByName(nombre);
     }
 
     public Course findCouserById(String id) {
-        return courseRepository.findFirstById(id);
+        return courseRepository.findById(id);
     }
 
     public List<Course> listCourse() {
-        List<Course> courses = courseRepository.findAll();
+        List<Course> courses = courseRepository.getAllCourse();
         return courses;
     }
 
@@ -43,8 +40,8 @@ public class CourseService {
         courseRepository.save(course);
     }
 
-    public void deleteCourse(String id) {
-        courseRepository.deleteById(id);
+    public void deleteCourse(Course course) {
+        courseRepository.deleteCourse(course);
     }
     
     

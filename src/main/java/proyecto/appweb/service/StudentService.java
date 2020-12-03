@@ -5,18 +5,12 @@
  */
 package proyecto.appweb.service;
 
-import com.mongodb.client.result.UpdateResult;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
-
 import org.springframework.stereotype.Service;
+import proyecto.appweb.model.Course;
 import proyecto.appweb.model.Student;
-import proyecto.appweb.repository.CourseRep;
-import proyecto.appweb.repository.StudentRepository;
+import proyecto.appweb.repository.StudentRep;
 
 /**
  *
@@ -26,41 +20,44 @@ import proyecto.appweb.repository.StudentRepository;
 public class StudentService {
 
     @Autowired
-    private CourseRep courseRep;
-
-    @Autowired
-    private StudentRepository studentRepository;
+    private StudentRep studentRepository;
 
     public List<Student> listStudent() {
-        List<Student> students = studentRepository.findAll();
-        return students;
+        return studentRepository.getAllStudents();
     }
 
     public List<Student> listStudentByCourseId(String id) {
-        List<Student> students = studentRepository.findStudentsByIdCourse(id);
-        return students;
+        return studentRepository.getAllStudents(id);
     }
 
     public Student findStudentByDNI(String dni) {
-        return studentRepository.findByDNI(dni);
+        return studentRepository.findStudentByDNI(dni);
     }
 
     public Student findStudentById(String id) {
-        return studentRepository.findFirstById(id);
+        return studentRepository.findStudentById(id);
     }
 
-    public void saveStudent(String id, Student student) {
+    public void saveStudent(Student student) {
         student.setNombre(student.getNombre());
         student.setApellido(student.getApellido());
         student.setDNI(student.getDNI());
         studentRepository.save(student);
     }
 
-    public UpdateResult saveStudentByid(String id, Student student) {
-        return courseRep.saveStudentByid(id, student);
+    public void deleteStudent(Student student) {
+        studentRepository.deleteStudent(student);
     }
 
-    public void deleteStudent(String id) {
-        studentRepository.deleteById(id);
+    public void addStudent(String id, Student student) {
+        studentRepository.addStudent(id, student);
+    }
+
+    public void removeStudent(String id_course, Student student) {
+        studentRepository.removeStudent(id_course, student);
+    }
+
+    public Course findCourseByName(String name) {
+        return studentRepository.findCourseByName(name);
     }
 }
