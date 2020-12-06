@@ -35,14 +35,11 @@
 
         <div class="col-12 form-input">
           <form th:action="@{/signup}" method="post">
-            <div class="form-group"> <input type="text" name="fullname" class="form-control" id="inputEmail"
-                placeholder="Nombre" required=""> </div>
-            <div class="form-group"> <input type="text" name="fullname" class="form-control" id="inputEmail"
-                placeholder="Apellidos" required=""> </div>
-            <div class="form-group"> <input type="text" name="email" id="inputEmail" class="form-control"
-                placeholder="Email" required=""></div>
-            <div class="form-group"><input type="password" name="email" id="inputPassword" class="form-control"
-                placeholder="Contraseña" required=""></div>
+            <div class="form-group"> <input type="text" name="fullname" id="inputEmail" class="form-control" placeholder="Fullname" required="" /></div>
+
+            <div class="form-group"> <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Username" required="" /></div>
+        
+            <div class="form-group"><input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" /></div>
 
             <button type="submit" class="btn btn-sucess">Registrarse</button>
           </form>
