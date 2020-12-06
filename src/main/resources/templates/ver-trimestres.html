@@ -1,0 +1,184 @@
+<head>
+    <title>Notas por trimestre</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style-add-student.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <!-- The navbar -->
+    <div class="d-flex">
+        <div id="sidebar">
+            <div class="p-2">
+                <a class="navbar-brand text-center text-light w-100 p-0"><img th:src="@{/images/logo.png}" alt="Logo"
+                        tyle="width:90px;"></a>
+            </div>
+            <div class="nombre p-2">
+                <a class="navbar-brand text-center text-light w-100 p-0 text-uppercase">addnotes</a>
+            </div>
+            <div class="menu-principal p-2">
+                <a class="navbar-brand text-center text-light w-100 p-0 text-uppercase mr-2">Menú</a>
+            </div>
+            <div id="sidebar-accordion" class="accordion">
+                <div class="list-group">
+                    <a th:href="@{/ver-cursos}" class="nav-link text-light">
+                        <i class="fa fa-graduation-cap mr-3 mb-3 mt-2"></i>Cursos
+                    </a>
+                    <a th:href="@{/ver-alumnos}" class="nav-link  text-light">
+                        <i class="fa fa-users mr-3 mb-3 mt-2"></i>Estudiantes
+                    </a>
+                    <a th:href="@{/ver-trimestres}" class="nav-link text-light">
+                        <i class="fa fa-sticky-note mr-3 mb-3 mt-2"></i>Notas
+                    </a>
+                    <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
+                        class="nav-link list-group-item text-light">
+                        <i class="fa fa-adjust mr-3 mb-3 mt-2"></i>Temas
+                    </a>
+                    <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
+                        <a onclick="changeCSS('styles-theme1.css');"
+                            class="list-group-item list-group-item-action bg-dark text-light">
+                            Breeze summer
+                        </a>
+                        <a onclick="changeCSS('styles-theme1.css', 0);"
+                            class="list-group-item list-group-item-action bg-dark text-light">
+                            Dark mode
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a th:href="@{/home}"  class="nav-link  text-light">
+                <i class="fa fa-power-off mr-3 mb-3 mt-2"></i>Cerrar sesión
+            </a>
+        </div>
+
+        <!--Tabla de estudiantes-->
+        <div class="container">
+            <div class="col-md-12">
+                <nav id="nav-estudiantes" class="nav-cursos navbar navbar-light text-light mx-auto mt-3">
+                <h2 class="mx-auto text-uppercase">Listado de notas</h2>
+            </nav>
+                <button class="btn mb-2" data-toggle="modal" data-target="#modalAgregarEstudiante"  data-placement="right" title="Agregar nuevas notas">Nuevo</button>
+                <div class="table-responsive">
+                    <form th:object="${nota}">
+                        <table id=estilos class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th colspan=6 class="text-uppercase text-center">Notas de trimestres</th>  
+                                    <th colspan=2 class="text-uppercase text-center">Acciones</th>                              
+                                </tr>  
+                                <tr>
+                                    <th>Período</th> 
+                                    <th>1º Examen</th> 
+                                    <th>2º Examen</th>
+                                    <th>3º Examen</th>
+                                    <th>4º Examen</th> 
+                                    <th>5º examen</th>
+                                    <th>Editar</th>
+                                    <th>Eliminar</th>
+                                                                
+                                </tr>                                             
+                            </thead>
+                            <tbody>
+                                <tr th:each="nota : ${notas}">
+                                    <input type="hidden" th:field="*{id}">
+                                    <td th:text="${nota.periodo}" th:field="*{periodo}"></td>
+                                    <td th:text="${nota.nota1}" th:field="*{nota1}"></td>
+                                    <td th:text="${nota.nota2}" th:field="*{nota2}"></td>
+                                    <td th:text="${nota.nota3}" th:field="*{nota3}"></td>
+                                    <td th:text="${nota.nota4}" th:field="*{nota4}"></td> 
+                                    <td th:text="${nota.nota5}" th:field="*{nota5}"></td>                                
+                                    <td>
+                                        <a href="editar-notas.html">
+                                        <button type="button" class="btn"><i class="fa fa-pencil-square-o"
+                                                aria-hidden="true"></i> Editar</button></a>
+                                    </td>
+
+                                    <td>
+                                        <form th:action="@{/delete-note}" method="post">
+                                            <input type="hidden" name="id" th:value="${nota.id}" />
+                                            <button type="submit" class="btn"><i class="fa fa-trash"></i> Eliminar</button>
+                                        </form>
+                                       
+                                    </td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal para agregar un nuevo estudiante -->
+    <div class="modal" id="modalAgregarEstudiante">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase"><i class="fa fa-users mr-3 mb-3 mt-2"></i>Agregar notas</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <form th:action="@{/save-note}" method="post" th:object="${nota}">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nombre">Período</label>
+                            <input type="text" class="form-control" placeholder="trimestre actual" required=""
+                            th:field="*{periodo}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nota 1º examen</label>
+                            <input type="text" class="form-control" placeholder="Nota 1" required=""
+                            th:field="*{nota1}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nota 2º examen</label>
+                            <input type="text" class="form-control" placeholder="Nota 2" th:field="*{nota2}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nota 3º examen</label>
+                            <input type="text" class="form-control" placeholder="Nota 3" th:field="*{nota3}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nota 4º examen</label>
+                            <input type="text" class="form-control" placeholder="Nota 4" th:field="*{nota4}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nota 5º examen</label>
+                            <input type="text" class="form-control" placeholder="Nota del examen" th:field="*{nota5}">
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="submit">Guardar</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer font-small">
+        <div class="footer-copyright text-center py-3 text-light"> 2020 Addnotes
+            <img th:src="@{/images/logo.png}" alt="Logo"
+                        style="width:50px;">
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    </body>
+    </html>

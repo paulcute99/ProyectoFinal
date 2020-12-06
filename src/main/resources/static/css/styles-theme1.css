@@ -1,0 +1,60 @@
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: rgba(133, 127, 77, 0.301); 
+  color: rgb(29, 29, 31);
+}
+
+table.table, th, td{
+ border-collapse: collapse;
+  background-color: rgb(193, 174, 211);
+  width: 50%;
+  height: 50%;
+  float: center;
+  margin-top: 0;
+}
+.thead-dark, tr, th{
+  background-color: teal;
+}
+
+.container{
+  margin-top: 0%;
+}
+
+h2{
+  font-family: Impact, Charcoal, sans-serif;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.p-2{
+  background: #06334bcb;
+  text-align: center;
+  height: 7%; 
+  padding: 0;
+}
+
+.nombre{
+  background: #06334bcb;
+  height: 4%;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+}
+
+
+
+button.btn{
+  background-color: #4e7488cb;
+}
+
+button.btn.mb-2{
+  background-color: #4e7488cb;
+  margin-top: 3%;
+}
+
+
+
+
+
+  
+
