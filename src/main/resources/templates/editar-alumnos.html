@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default.html}">
+
+<head>
+    <title>Editar Alumnos</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <link rel="stylesheet" type="text/css" href="style-add-student.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- The navbar -->
+    <div class="d-flex">
+        <div id="sidebar">
+            <div class="p-2">
+                <a class="navbar-brand text-center text-light w-100 p-0"><img src="img/logo.png" alt="Logo"
+                        tyle="width:90px;"></a>
+            </div>
+            <div class="nombre p-2">
+                <a class="navbar-brand text-center text-light w-100 p-0 text-uppercase">addnotes</a>
+            </div>
+            <div class="menu-principal p-2">
+                <a class="navbar-brand text-center text-light w-100 p-0 text-uppercase mr-2">Menú</a>
+            </div>
+            <div id="sidebar-accordion" class="accordion">
+                <div class="list-group">
+                    <a class="nav-link text-light" href="./home.html">
+                        <i class="fa fa-home mr-3 mb-3 mt-2"></i>Inicio
+                    </a>
+                    <a class="nav-link text-light" href="./ver-cursos.html">
+                        <i class="fa fa-graduation-cap mr-3 mb-3 mt-2"></i>Cursos
+                    </a>
+                    <a href="#" class="nav-link text-light">
+                        <i class="fa fa-sticky-note mr-3 mb-3 mt-2"></i>Notas
+                    </a>
+                    <a href="./ver-alumnos.html" class="nav-link  text-light">
+                        <i class="fa fa-users mr-3 mb-3 mt-2"></i>Estudiantes
+                    </a>
+                    <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
+                        class="nav-link list-group-item text-light">
+                        <i class="fa fa-adjust mr-3 mb-3 mt-2"></i>Temas
+                    </a>
+                    <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
+                        <a onclick="changeCSS('styles-theme1.css');"
+                            class="list-group-item list-group-item-action bg-dark text-light">
+                            Breeze summer
+                        </a>
+                        <a onclick="changeCSS('styles-theme1.css', 0);"
+                            class="list-group-item list-group-item-action bg-dark text-light">
+                            Dark mode
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a href="#setting-items" class="nav-link  text-light">
+                <i class="fa fa-power-off mr-3 mb-3 mt-2"></i>Cerrar sesión
+            </a>
+        </div>
+
+        <div class="container">
+            <div id="fondo-editar" class="col-md-12">
+                <h2 id="editar" class="mx-auto text-uppercase" style="font-size:50px">Editar</h2>
+                <form>
+                    <div class="col-lx ml-5 mt-5">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Apellido</label>
+                            <input type="text" class="form-control" placeholder="Apellido">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">DNI</label>
+                            <input type="text" class="form-control" placeholder="Ej: 23456891v">
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button class="btn btn-dark" type="button">Guardar</button>
+                            <button class="btn btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
