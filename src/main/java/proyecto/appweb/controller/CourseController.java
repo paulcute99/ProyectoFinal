@@ -68,7 +68,7 @@ public class CourseController {
     }
 
     @PostMapping(path = "/delete/{id}")
-    public String deleteCourse(@PathVariable String id,@ModelAttribute Course course, Model model, RedirectAttributes redirectAttrs) {
+    public String deleteCourse(@PathVariable String id, @ModelAttribute Course course, Model model, RedirectAttributes redirectAttrs) {
 
         redirectAttrs
                 .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
@@ -80,7 +80,7 @@ public class CourseController {
 
     @PostMapping(path = "/edit/{id}")
     public String editAndSaveCourse(@PathVariable String id, @ModelAttribute @Valid Course course, Model model, BindingResult bindingResult) {
-        System.out.print(id); 
+        System.out.print(id);
         if (bindingResult.hasErrors()) {
             System.out.print(bindingResult.toString());
             bindingResult
@@ -92,7 +92,7 @@ public class CourseController {
         }
         return "redirect:/ver-cursos";
     }
-    
+
     @RequestMapping(path = "/edit/{id}")
     public String editCourse(@PathVariable("id") String id_curso, Model model, RedirectAttributes redirectAttrs) {
         Course course = new Course();

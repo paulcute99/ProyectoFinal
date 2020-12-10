@@ -32,7 +32,7 @@
             </div>
             <div id="sidebar-accordion" class="accordion">
                 <div class="list-group">
-                    <a class="nav-link text-light" th:href="@{/ver-cursos}">
+                    <a th:href="@{/ver-cursos}" class="nav-link text-light">
                         <i class="fa fa-graduation-cap mr-3 mb-3 mt-2"></i>Cursos
                     </a>
                     <a th:href="@{/ver-alumnos}" class="nav-link  text-light">
@@ -46,49 +46,43 @@
                         <i class="fa fa-adjust mr-3 mb-3 mt-2"></i>Temas
                     </a>
                     <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="trigger" class="list-group-item list-group-item-action text-light">
+                        <a  id="trigger" class="list-group-item list-group-item-action text-light">
                             Tema summer mode
                         </a>
-                        <a id="dark-mode" class="list-group-item list-group-item-action text-light">
+                        <a  id="dark-mode" class="list-group-item list-group-item-action text-light">
                             Tema dark mode
                         </a>
-                        <a id="temaOri" class="list-group-item list-group-item-action text-light">
+                        <a id="temaOri" class="list-group-item list-group-item-action text-light" >
                             Tema original
                         </a>
                     </div>
                 </div>
             </div>
-            <a th:href="@{/home}" class="nav-link  text-light">
+            <a th:href="@{/home}"  class="nav-link  text-light">
                 <i class="fa fa-power-off mr-3 mb-3 mt-2"></i>Cerrar sesión
             </a>
         </div>
 
-        <!--Script para cambiar a tema claro-->
-        <script th:inline="javascript">
-
-            /*<![CDATA[*/
-
-            document.getElementById("trigger").onclick = function () {
-                document.getElementById("tema-original").href= "/*[[@{/css/styles-theme1.css}]]*/";
-            };
-            /*]]>*/
+        <!--Script para cambiar a tema summer-->
+        <script th:inline="javascript">           
+                document.getElementById("trigger").onclick = function () {
+                    document.getElementById("tema-original").href = /*[[@{/css/styles-theme1.css}]]*/'';
+                };
         </script>
-
+    
         <!--Script para cambiar a tema oscuro-->
         <script th:inline="javascript">
-
-             /*<![CDATA[*/
-
-             document.getElementById("trigger").onclick = function () {
-                document.getElementById("tema-original").href=" /*[[@{/css/styles-theme-dark.css}]]*/";
+            
+            document.getElementById("dark-mode").onclick = function () {
+                document.getElementById("tema-original").href = /*[[@{/css/styles-theme-dark.css}]]*/'';
             };
-            /*]]>*/
+             
         </script>
 
         <!--Script para cambiar a tema original-->
-        <script>
+        <script th:inline="javascript">
             document.getElementById("temaOri").onclick = function () {
-                document.getElementById("tema-original").href = "../static/css/style-add-student.css";
+                document.getElementById("tema-original").href = /*[[@{/css/style-add-student.css}]]*/'';
             };
         </script>
 
@@ -166,13 +160,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" placeholder="Nombre de estudiante" required=""  minlength="1" maxlength="100"
-                                th:field="*{nombre}">
+                            <input type="text" class="form-control" placeholder="Nombre de estudiante" required=""
+                                minlength="1" maxlength="100" th:field="*{nombre}">
                         </div>
                         <div class="form-group">
                             <label for="nombre">Sección</label>
-                            <input type="text" class="form-control" placeholder="Apellido de estudiante" required=""  minlength="1" maxlength="100"
-                                th:field="*{seccion}">
+                            <input type="text" class="form-control" placeholder="Apellido de estudiante" required=""
+                                minlength="1" maxlength="100" th:field="*{seccion}">
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">

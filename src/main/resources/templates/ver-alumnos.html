@@ -57,29 +57,32 @@
                         </a>
                     </div>
                 </div>
-            </div>  
-            <a class="nav-link  text-light" th:href="@{/home}">
+            </div>
+            <a th:href="@{/home}"  class="nav-link  text-light">
                 <i class="fa fa-power-off mr-3 mb-3 mt-2"></i>Cerrar sesión
             </a>
         </div>
 
-        <script>
-            document.getElementById("trigger").onclick = function () {
-                document.getElementById("tema-original").href = "/css/styles-theme1.css";
-            };
+        <!--Script para cambiar a tema summer-->
+        <script th:inline="javascript">           
+                document.getElementById("trigger").onclick = function () {
+                    document.getElementById("tema-original").href = /*[[@{/css/styles-theme1.css}]]*/'';
+                };
         </script>
     
         <!--Script para cambiar a tema oscuro-->
-        <script>
+        <script th:inline="javascript">
+            
             document.getElementById("dark-mode").onclick = function () {
-                document.getElementById("tema-original").href = "styles-theme-dark.css";
+                document.getElementById("tema-original").href = /*[[@{/css/styles-theme-dark.css}]]*/'';
             };
+             
         </script>
 
         <!--Script para cambiar a tema original-->
-        <script>
+        <script th:inline="javascript">
             document.getElementById("temaOri").onclick = function () {
-                document.getElementById("tema-original").href = "style-add-student.css";
+                document.getElementById("tema-original").href = /*[[@{/css/style-add-student.css}]]*/'';
             };
         </script>
 
