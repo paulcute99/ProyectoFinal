@@ -30,7 +30,7 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-    
+
     @RequestMapping(path = "/ver-cursos/alumnos/{id}")
     public String listStudents(@PathVariable("id") String id_curso, Model model, RedirectAttributes redirectAttrs) {
 
@@ -61,6 +61,7 @@ public class StudentController {
     @RequestMapping(path = "/save-student/{id_curso}")
     public String createNewStudentById(@PathVariable String id_curso, @ModelAttribute Student student, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         Student studentExist = studentService.findStudentByDNI(student.getDNI());
+        boolean nif = NifValido(student.getDNI());
         System.out.print(id_curso);
         if (studentExist != null) {
             bindingResult
@@ -70,8 +71,7 @@ public class StudentController {
                     .addFlashAttribute("DNI", "El DNI del estudiante ya existe")
                     .addFlashAttribute("clase", "success");
         }
-        if (bindingResult.hasErrors()) {
-            System.out.print(bindingResult.toString());
+        if (nif == false) {
             bindingResult
                     .rejectValue("DNI", "error.student",
                             "El DNI del estudiante ya existe");
@@ -88,6 +88,7 @@ public class StudentController {
     @RequestMapping(path = "/save-student")
     public String createNewStudent(@ModelAttribute Student student, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         Student studentExist = studentService.findStudentByDNI(student.getDNI());
+         boolean nif = NifValido(student.getDNI());
         if (studentExist != null) {
             bindingResult
                     .rejectValue("DNI", "error.course",
@@ -96,11 +97,10 @@ public class StudentController {
                     .addFlashAttribute("DNI", "El DNI del estudiante ya existe")
                     .addFlashAttribute("clase", "success");
         }
-        if (bindingResult.hasErrors()) {
-            System.out.print(bindingResult.toString());
+        if (nif == false) {
             bindingResult
                     .rejectValue("DNI", "error.student",
-                            "El DNI del estudiante ya existe");
+                            "El DNI introducido no es valido");
             return "redirect:/ver-alumnos";
         } else {
             studentService.saveStudent(student);
@@ -177,4 +177,21 @@ public class StudentController {
         return "editar-alumno-id";
     }
 
+    public static boolean NifValido(String nif) {
+
+        if (nif.length() != 9) {
+            return false;
+        }
+
+        String secuenciaLetrasNIF = "TRWAGMYFPDXBNJZSQVHLCKE";
+        nif = nif.toUpperCase();
+
+        String numeroNIF = nif.substring(0, nif.length() - 1);
+
+        numeroNIF = numeroNIF.replace("X", "0").replace("Y", "1").replace("Z", "2");
+
+        char letraNIF = nif.charAt(8);
+        int i = Integer.parseInt(numeroNIF) % 23;
+        return letraNIF == secuenciaLetrasNIF.charAt(i);
+    }
 }

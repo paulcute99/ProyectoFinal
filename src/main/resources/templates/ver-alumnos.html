@@ -155,17 +155,17 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" placeholder="Nombre de estudiante" required=""
+                            <input type="text" class="form-control" placeholder="Nombre de estudiante" required="" minlength="1" maxlength="50"
                             th:field="*{nombre}">
                         </div>
                         <div class="form-group">
                             <label for="nombre">Apellido</label>
-                            <input type="text" class="form-control" placeholder="Apellido de estudiante" required=""
+                            <input type="text" class="form-control" placeholder="Apellido de estudiante" required=""  minlength="1" maxlength="50"
                             th:field="*{apellido}" >
                         </div>
                         <div class="form-group">
                             <label for="nombre">Dni</label>
-                            <input type="text" class="form-control" placeholder="Ej: 67005409V" required=""
+                            <input type="text" class="form-control" placeholder="Ej: 67005409V" required=""  maxlength="9"
                             th:field="*{DNI}">
                         </div>
                         <!-- Modal footer -->
