@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style-add-student.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style-add-student.css}" id="tema-original"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -66,7 +66,7 @@
         <!--Script para cambiar a tema summer-->
         <script th:inline="javascript">           
                 document.getElementById("trigger").onclick = function () {
-                    document.getElementById("tema-original").href = /*[[@{/css/styles-theme1.css}]]*/'';
+                    document.getElementById("tema-original").href = /*[[@{/css/styles-theme1.css}]]*/;
                 };
         </script>
     
@@ -74,7 +74,7 @@
         <script th:inline="javascript">
             
             document.getElementById("dark-mode").onclick = function () {
-                document.getElementById("tema-original").href = /*[[@{/css/styles-theme-dark.css}]]*/'';
+                document.getElementById("tema-original").href = /*[[@{/css/styles-theme-dark.css}]]*/;
             };
              
         </script>
@@ -82,7 +82,7 @@
         <!--Script para cambiar a tema original-->
         <script th:inline="javascript">
             document.getElementById("temaOri").onclick = function () {
-                document.getElementById("tema-original").href = /*[[@{/css/style-add-student.css}]]*/'';
+                document.getElementById("tema-original").href = /*[[@{/css/style-add-student.css}]]*/;
             };
         </script>
 

@@ -90,7 +90,7 @@ button.btn.mb-2{
 }
 
 #nav-estudiantes{
-  background-image: url(/images/pizarra-cursos.jpg);
+  background-image: url(img/pizarra-cursos.jpg);
   background-size: cover; 
   border-radius: 8px;      
 }
@@ -121,7 +121,7 @@ footer{
 }
 
 #nav-cursos{
-  background-image: url(/images/pizarra-cursos.jpg);
+  background-image: url(img/pizarra-cursos.jpg);
   background-size: cover;
   border-radius: 8px;
 }
