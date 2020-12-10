@@ -69,16 +69,20 @@
             /*<![CDATA[*/
 
             document.getElementById("trigger").onclick = function () {
-                var changeCss = /*[[@{/css/styles-theme1.css"}]]*/ "tema-original";
+                document.getElementById("tema-original").href= "/*[[@{/css/styles-theme1.css}]]*/";
             };
             /*]]>*/
         </script>
 
         <!--Script para cambiar a tema oscuro-->
         <script th:inline="javascript">
-            document.getElementById("dark-mode").onclick = function () {
-                document.getElementById("tema-original").href = "../static/css/styles-theme-dark.css";
+
+             /*<![CDATA[*/
+
+             document.getElementById("trigger").onclick = function () {
+                document.getElementById("tema-original").href=" /*[[@{/css/styles-theme-dark.css}]]*/";
             };
+            /*]]>*/
         </script>
 
         <!--Script para cambiar a tema original-->

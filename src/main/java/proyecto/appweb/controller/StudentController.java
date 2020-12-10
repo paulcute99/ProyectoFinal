@@ -30,10 +30,7 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-
-    @Autowired
-    private CourseService courseService;
-
+    
     @RequestMapping(path = "/ver-cursos/alumnos/{id}")
     public String listStudents(@PathVariable("id") String id_curso, Model model, RedirectAttributes redirectAttrs) {
 
@@ -89,10 +86,8 @@ public class StudentController {
     }
 
     @RequestMapping(path = "/save-student")
-    public String createNewStudent(@ModelAttribute Student student, @ModelAttribute Course course, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
+    public String createNewStudent(@ModelAttribute Student student, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         Student studentExist = studentService.findStudentByDNI(student.getDNI());
-        Course courseId = courseService.findCouserByName(course.getNombre());
-        System.out.print(courseId.getId());
         if (studentExist != null) {
             bindingResult
                     .rejectValue("DNI", "error.course",

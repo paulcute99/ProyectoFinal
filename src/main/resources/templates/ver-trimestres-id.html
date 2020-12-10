@@ -124,7 +124,7 @@
                                     </td>
 
                                     <td>
-                                        <form th:action="@{'/delete-note'+${id_estudiante}}" method="post">
+                                        <form th:action="@{'/delete-note/'+${id_estudiante}}" method="post">
                                             <input type="hidden" name="id" th:value="${nota.id}" />
                                             <button type="submit" class="btn"><i class="fa fa-trash"></i> Eliminar</button>
                                         </form>
