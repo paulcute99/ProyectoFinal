@@ -24,6 +24,14 @@ h2{
     background: #09384b8c;
 }
 
+.list-group-item:hover{
+    background-color:  #06334bcb;
+}
+
+.list-group-item{
+    background-color: #09384b8c;
+}
+
 .p-2{
     background: #06334bcb;
     text-align: center;
@@ -123,4 +131,8 @@ label{
     border-radius: 8px;
 }
 
+#icon-buscar{
+    background-color: rgba(15, 52, 63, 0.39);
+    border-radius: 2px;
+}
 

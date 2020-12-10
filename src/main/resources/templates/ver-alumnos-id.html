@@ -95,7 +95,7 @@
                                     <td th:text="${student.apellido}" th:field="*{apellido}"></td>
                                     <td th:text="${student.DNI}" th:field="*{DNI}"></td>
                                     <td>
-                                        <a>
+                                        <a th:href="@{'/edit_students/'+${student.id}}">
                                             <button type="button" class="btn"><i class="fa fa-pencil-square-o"
                                                     aria-hidden="true"></i> Editar</button>
                                         </a>

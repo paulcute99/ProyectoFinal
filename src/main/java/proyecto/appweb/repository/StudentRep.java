@@ -29,8 +29,8 @@ public class StudentRep {
     public Student findStudentByDNI(String dni) {
         return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("DNI").is(dni)), Student.class);
     }
-    
-    public Course findCourseByName(String name){
+
+    public Course findCourseByName(String name) {
         return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("name").is(name)), Course.class);
     }
 
@@ -68,5 +68,13 @@ public class StudentRep {
                 new Query().addCriteria(Criteria.where("id").is(id_course)),
                 new Update().pull("estudiantes", student),
                 Course.class);
+    }
+
+    public void updateStudent(String id, Student student) {
+        Update update = new Update();
+        update.set("nombre", student.getNombre());
+        update.set("apellido", student.getApellido());
+        update.set("DNI", student.getDNI());
+        mongoTemplate.updateFirst(new Query().addCriteria(Criteria.where("id").is(id)), update, Student.class);
     }
 }

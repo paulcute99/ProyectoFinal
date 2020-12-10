@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-add-student.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
 </head>
 
 <body>
@@ -46,13 +46,14 @@
                         <i class="fa fa-adjust mr-3 mb-3 mt-2"></i>Temas
                     </a>
                     <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a onclick="changeCSS('styles-theme1.css');"
-                            class="list-group-item list-group-item-action bg-dark text-light">
-                            Breeze summer
+                        <a id="trigger" class="list-group-item list-group-item-action text-light">
+                            Tema summer mode
                         </a>
-                        <a onclick="changeCSS('styles-theme1.css', 0);"
-                            class="list-group-item list-group-item-action bg-dark text-light">
-                            Dark mode
+                        <a id="dark-mode" class="list-group-item list-group-item-action text-light">
+                            Tema dark mode
+                        </a>
+                        <a id="temaOri" class="list-group-item list-group-item-action text-light">
+                            Tema original
                         </a>
                     </div>
                 </div>
@@ -62,6 +63,31 @@
             </a>
         </div>
 
+        <!--Script para cambiar a tema claro-->
+        <script th:inline="javascript">
+
+            /*<![CDATA[*/
+
+            document.getElementById("trigger").onclick = function () {
+                var changeCss = /*[[@{/css/styles-theme1.css"}]]*/ "tema-original";
+            };
+            /*]]>*/
+        </script>
+
+        <!--Script para cambiar a tema oscuro-->
+        <script th:inline="javascript">
+            document.getElementById("dark-mode").onclick = function () {
+                document.getElementById("tema-original").href = "../static/css/styles-theme-dark.css";
+            };
+        </script>
+
+        <!--Script para cambiar a tema original-->
+        <script>
+            document.getElementById("temaOri").onclick = function () {
+                document.getElementById("tema-original").href = "../static/css/style-add-student.css";
+            };
+        </script>
+
         <!--Tabla de cursos-->
         <div class="container">
             <div class="col-md-12">
@@ -69,10 +95,12 @@
                     <h2 class="mx-auto text-uppercase" style="font-size:50px">Listado de cursos</h2>
                 </nav>
                 <form class="form-inline mt-5">
-                    <input class="form-control mr-sm-2 light-table-filter" data-table="order-table" type="search" placeholder="Buscar curso" aria-label="Search">
+                    <input class="form-control mr-sm-2 light-table-filter" data-table="order-table" type="search"
+                        placeholder="Buscar curso" aria-label="Search">
                     <button class="btn my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
-                <button class="btn mb-2" data-toggle="modal" data-target="#modalNuevoCurso"  data-placement="right" title="Agregar un nuevo curso">Nuevo</button>
+                <button class="btn mb-2" data-toggle="modal" data-target="#modalNuevoCurso" data-placement="right"
+                    title="Agregar un nuevo curso">Nuevo</button>
                 <div class="table-responsive">
                     <form th:object="${curso}">
                         <table id=estilos class="table table-bordered table-hover table-striped order-table">
@@ -88,24 +116,27 @@
                             <tbody>
                                 <tr th:each="curso : ${cursos}">
                                     <input type="hidden" th:field="*{id}">
-                                    <td  th:text="${curso.nombre}" th:field="*{nombre}"></td>
+                                    <td th:text="${curso.nombre}" th:field="*{nombre}"></td>
                                     <td th:text="${curso.seccion}" th:field="*{seccion}">/td>
                                     <td>
-                                        <a>
-                                        <button type="button" class="btn" ><i class="fa fa-pencil-square-o"
-                                                aria-hidden="true"></i> Editar</button>
+
+                                        <a th:href="@{'/edit/'+${curso.id}}">
+                                            <button type="button" class="btn"><i class="fa fa-pencil-square-o"
+                                                    aria-hidden="true"></i> Editar</button>
                                         </a>
+
                                     </td>
                                     <td>
-                                        <form th:action="@{/delete}" method="post">
-                                            <input type="hidden" name="id" th:value="${curso.id}" />
-                                            <button type="submit" class="btn"><i class="fa fa-trash"></i> Eliminar</button>
+                                        <form th:action="@{'/delete/' +${curso.id}}" method="post">
+                                            <button type="submit" class="btn"><i
+                                                    class="fa fa-trash"></i>Eliminar</button>
                                         </form>
-                                        
+
                                     </td>
                                     <td>
                                         <a th:href="@{'/ver-cursos/alumnos/'+ ${curso.id}}">
-                                            <button type="button" class="btn"><i class="fa fa-users"></i>Ver alumnos</button>
+                                            <button type="button" class="btn"><i class="fa fa-users"></i>Ver
+                                                alumnos</button>
                                         </a>
                                     </td>
                                 </tr>
@@ -131,13 +162,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" placeholder="Nombre de estudiante" required=""  
-                            th:field="*{nombre}">
+                            <input type="text" class="form-control" placeholder="Nombre de estudiante" required=""
+                                th:field="*{nombre}">
                         </div>
                         <div class="form-group">
                             <label for="nombre">Sección</label>
-                            <input type="text" class="form-control" placeholder="Apellido de estudiante" required="" 
-                            th:field="*{seccion}">
+                            <input type="text" class="form-control" placeholder="Apellido de estudiante" required=""
+                                th:field="*{seccion}">
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
@@ -156,51 +187,58 @@
     </footer>
 
     <!-- Script para buscador de alumnos-->
-<script type="text/javascript">
-    (function(document) {
-      'use strict';
+    <script type="text/javascript">
+        (function (document) {
+            'use strict';
 
-      var LightTableFilter = (function(Arr) {
+            var LightTableFilter = (function (Arr) {
 
-        var _input;
+                var _input;
 
-        function _onInputEvent(e) {
-          _input = e.target;
-          var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-          Arr.forEach.call(tables, function(table) {
-            Arr.forEach.call(table.tBodies, function(tbody) {
-              Arr.forEach.call(tbody.rows, _filter);
+                function _onInputEvent(e) {
+                    _input = e.target;
+                    var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                    Arr.forEach.call(tables, function (table) {
+                        Arr.forEach.call(table.tBodies, function (tbody) {
+                            Arr.forEach.call(tbody.rows, _filter);
+                        });
+                    });
+                }
+
+                function _filter(row) {
+                    var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                    row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+                }
+
+                return {
+                    init: function () {
+                        var inputs = document.getElementsByClassName('light-table-filter');
+                        Arr.forEach.call(inputs, function (input) {
+                            input.oninput = _onInputEvent;
+                        });
+                    }
+                };
+            })(Array.prototype);
+
+            document.addEventListener('readystatechange', function () {
+                if (document.readyState === 'complete') {
+                    LightTableFilter.init();
+                }
             });
-          });
-        }
 
-        function _filter(row) {
-          var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-          row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-        }
-
-        return {
-          init: function() {
-            var inputs = document.getElementsByClassName('light-table-filter');
-            Arr.forEach.call(inputs, function(input) {
-              input.oninput = _onInputEvent;
-            });
-          }
-        };
-      })(Array.prototype);
-
-      document.addEventListener('readystatechange', function() {
-        if (document.readyState === 'complete') {
-          LightTableFilter.init();
-        }
-      });
-
-    })(document);
+        })(document);
     </script>
     <!--Scripts bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

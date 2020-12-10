@@ -44,6 +44,10 @@ public class CourseService {
         courseRepository.deleteCourse(course);
     }
     
+    public void updateCourse(String id, Course course) {
+         courseRepository.update(id,course);
+    }
+    
     
 
 }

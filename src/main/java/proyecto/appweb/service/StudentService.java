@@ -60,4 +60,8 @@ public class StudentService {
     public Course findCourseByName(String name) {
         return studentRepository.findCourseByName(name);
     }
+
+    public void updateStudent(String id, Student student) {
+        studentRepository.updateStudent(id,student);
+    }
 }

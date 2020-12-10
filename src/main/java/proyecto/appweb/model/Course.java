@@ -28,7 +28,7 @@ public class Course {
 
     private String seccion;
    
-    
+    @DBRef
     private List<Student> estudiantes = new ArrayList<>();
 
     public void setId(String id) {

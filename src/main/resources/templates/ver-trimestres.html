@@ -43,13 +43,14 @@
                         <i class="fa fa-adjust mr-3 mb-3 mt-2"></i>Temas
                     </a>
                     <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a onclick="changeCSS('styles-theme1.css');"
-                            class="list-group-item list-group-item-action bg-dark text-light">
-                            Breeze summer
+                        <a  id="trigger" class="list-group-item list-group-item-action text-light">
+                            Tema summer mode
                         </a>
-                        <a onclick="changeCSS('styles-theme1.css', 0);"
-                            class="list-group-item list-group-item-action bg-dark text-light">
-                            Dark mode
+                        <a  id="dark-mode" class="list-group-item list-group-item-action text-light">
+                            Tema dark mode
+                        </a>
+                        <a id="temaOri" class="list-group-item list-group-item-action text-light" >
+                            Tema original
                         </a>
                     </div>
                 </div>
@@ -58,6 +59,27 @@
                 <i class="fa fa-power-off mr-3 mb-3 mt-2"></i>Cerrar sesión
             </a>
         </div>
+
+         <!--Script para cambiar a tema claro-->
+    <script>
+        document.getElementById("trigger").onclick = function () {
+            document.getElementById("tema-original").href = "styles-theme1.css";
+        };
+    </script>
+
+    <!--Script para cambiar a tema oscuro-->
+    <script>
+        document.getElementById("dark-mode").onclick = function () {
+            document.getElementById("tema-original").href = "styles-theme-dark.css";
+        };
+    </script>
+
+    <!--Script para cambiar a tema original-->
+    <script>
+        document.getElementById("temaOri").onclick = function () {
+            document.getElementById("tema-original").href = "style-add-student.css";
+        };
+    </script>
 
         <!--Tabla de estudiantes-->
         <div class="container">
@@ -96,7 +118,7 @@
                                     <td th:text="${nota.nota4}" th:field="*{nota4}"></td> 
                                     <td th:text="${nota.nota5}" th:field="*{nota5}"></td>                                
                                     <td>
-                                        <a href="editar-notas.html">
+                                        <a th:href="@{'/edit_note/'+${nota.id}}">
                                         <button type="button" class="btn"><i class="fa fa-pencil-square-o"
                                                 aria-hidden="true"></i> Editar</button></a>
                                     </td>
@@ -116,6 +138,8 @@
             </div>
         </div>
     </div>
+
+    
     <!-- Modal para agregar un nuevo estudiante -->
     <div class="modal" id="modalAgregarEstudiante">
         <div class="modal-dialog">
@@ -170,6 +194,7 @@
                         style="width:50px;">
         </div>
     </footer>
+  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -180,5 +205,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        
     </body>
     </html>

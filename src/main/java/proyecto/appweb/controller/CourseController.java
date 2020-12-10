@@ -67,13 +67,13 @@ public class CourseController {
         return "redirect:/ver-cursos";
     }
 
-    @PostMapping(path = "/delete")
-    public String deleteCourse(@ModelAttribute Course course, Model model, RedirectAttributes redirectAttrs) {
+    @PostMapping(path = "/delete/{id}")
+    public String deleteCourse(@PathVariable String id,@ModelAttribute Course course, Model model, RedirectAttributes redirectAttrs) {
 
         redirectAttrs
                 .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
                 .addFlashAttribute("clase", "warning");
-        courseService.deleteCourse(course);
+        courseService.deleteCourse(courseService.findCouserById(id));
 
         return "redirect:/ver-cursos";
     }
@@ -88,10 +88,17 @@ public class CourseController {
                             "El DNI del estudiante ya existe");
             return "redirect:/formularios-curso/students/{id_curso}";
         } else {
-             
-            courseService.saveCourse(course);
+            courseService.updateCourse(id, course);
         }
         return "redirect:/ver-cursos";
+    }
+    
+    @RequestMapping(path = "/edit/{id}")
+    public String editCourse(@PathVariable("id") String id_curso, Model model, RedirectAttributes redirectAttrs) {
+        Course course = new Course();
+        model.addAttribute("curso", course);
+        model.addAttribute("id_curso", id_curso);
+        return "editar-cursos";
     }
 
 }

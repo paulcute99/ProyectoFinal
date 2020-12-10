@@ -73,7 +73,7 @@
     <div class="container">
         <div id="fondo-editar" class="col-md-12">
             <h2 id="editar" class="mx-auto text-uppercase" style="font-size:50px">Editar</h2>
-            <form th:action="@{'/edit_note/'+${id_nota}}" method="post" th:object="${nota}">
+            <form th:action="@{'/edit_notes/'+${id_nota}}" method="post" th:object="${nota}">
                 <div class="col-lx ml-5 mt-5">
                     <div class="form-group">
                         <label for="nombre">Período</label>

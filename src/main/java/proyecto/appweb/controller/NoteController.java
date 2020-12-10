@@ -6,6 +6,7 @@
 package proyecto.appweb.controller;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,6 @@ public class NoteController {
         Note note = new Note();
         List<Note> notes = noteService.listNote(id_estudiante);
 
-        // Course course = studentService.findCourseByName("");
         model.addAttribute("nota", note);
         model.addAttribute("notas", notes);
         model.addAttribute("id_estudiante", id_estudiante);
@@ -51,8 +51,8 @@ public class NoteController {
         model.addAttribute("notas", notes);
         return "ver-trimestres";
     }
-    
-     @RequestMapping(path = "/save-note")
+
+    @RequestMapping(path = "/save-note")
     public String saveNote(@ModelAttribute Note note, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
 
         if (bindingResult.hasErrors()) {
@@ -95,20 +95,66 @@ public class NoteController {
                 .addFlashAttribute("clase", "warning");
         noteService.removeNote(id_estudiante, note);
         noteService.deleteNote(note);
-        
 
         return "redirect:/ver-trimestres/{id_estudiante}";
     }
-    
-     @PostMapping(path = "/delete-note")
+
+    @PostMapping(path = "/delete-note")
     public String deleteNotes(@ModelAttribute Note note, Model model, RedirectAttributes redirectAttrs) {
 
         redirectAttrs
                 .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
                 .addFlashAttribute("clase", "warning");
         noteService.deleteNote(note);
-        
 
         return "redirect:/ver-trimestres";
+    }
+
+    @PostMapping(path = "/edit_note/{id}")
+    public String editAndSaveNotes(@PathVariable String id, @ModelAttribute @Valid Note note, Model model, BindingResult bindingResult) {
+        System.out.print(id);
+        if (bindingResult.hasErrors()) {
+            System.out.print(bindingResult.toString());
+            bindingResult
+                    .rejectValue("Edit", "error.student",
+                            "Error al editar la nota");
+            return "redirect:/formularios-curso/students/{id_curso}";
+        } else {
+
+            noteService.saveNote(note);
+        }
+        return "redirect:/ver-trimestres";
+    }
+
+    @RequestMapping(path = "/edit_note/{id}")
+    public String editNotes(@PathVariable("id") String nota, Model model, RedirectAttributes redirectAttrs) {
+        Note note = new Note();
+        model.addAttribute("nota", note);
+        model.addAttribute("id_nota", nota);
+        return "editar-notas";
+    }
+    
+       @PostMapping(path = "/edit_notes/{id}")
+    public String editAndSaveNotesById(@PathVariable String id, @ModelAttribute @Valid Note note, Model model, BindingResult bindingResult) {
+        System.out.print(id);
+        if (bindingResult.hasErrors()) {
+            System.out.print(bindingResult.toString());
+            bindingResult
+                    .rejectValue("Edit", "error.student",
+                            "Error al editar la nota");
+            return "redirect:/formularios-curso/students/{id_curso}";
+        } else {
+
+            noteService.saveNote(note);
+        }
+        return "redirect:/ver-alumnos";
+    }
+
+    @RequestMapping(path = "/edit_notes/{id}")
+    public String editNotesById(@PathVariable("id") String nota, Model model, RedirectAttributes redirectAttrs) {
+        Note note = new Note();
+        model.addAttribute("nota", note);
+        model.addAttribute("id_nota", nota);
+        return "editar-nota-id";
     }
 }
