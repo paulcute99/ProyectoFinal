@@ -27,6 +27,19 @@
             <div class="menu-principal p-2">
                 <a class="navbar-brand text-center text-light w-100 p-0 text-uppercase mr-2">Menú</a>
             </div>
+            <div id="sidebar-accordion" class="accordion">
+                <div class="list-group">
+                    <a th:href="@{/ver-cursos}" class="nav-link text-light">
+                        <i class="fa fa-graduation-cap mr-3 mb-3 mt-2"></i>Cursos
+                    </a>
+                    <a th:href="@{/ver-alumnos}" class="nav-link  text-light">
+                        <i class="fa fa-users mr-3 mb-3 mt-2"></i>Estudiantes
+                    </a>
+                    <a th:href="@{/ver-trimestres}" class="nav-link text-light">
+                        <i class="fa fa-sticky-note mr-3 mb-3 mt-2"></i>Notas
+                    </a>
+                </div>
+            </div>
             <a th:href="@{/home}"  class="nav-link  text-light">
                 <i class="fa fa-power-off mr-3 mb-3 mt-2"></i>Cerrar sesión
             </a>

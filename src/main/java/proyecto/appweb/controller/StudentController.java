@@ -65,12 +65,12 @@ public class StudentController {
         System.out.print(id_curso);
         if (studentExist != null) {
             redirectAttrs
-                    .addFlashAttribute("error", "El DNI introducido no es valido")
+                    .addFlashAttribute("error", "El DNI introducido es esta repetido")
                     .addFlashAttribute("clase", "warning");
         }
-        if (nif == false) {
+        if (nif == false | studentExist != null ) {
             redirectAttrs
-                    .addFlashAttribute("error", "El DNI introducido no es valido")
+                    .addFlashAttribute("error", "El DNI introducido no es valido o esta repetido")
                     .addFlashAttribute("clase", "warning");
             return "redirect:/ver-cursos/alumnos/{id_curso}";
         } else {
@@ -93,9 +93,9 @@ public class StudentController {
                     .addFlashAttribute("error", "El DNI introducido no es valido")
                     .addFlashAttribute("clase", "warning");
         }
-        if (nif == false) {
+        if (nif == false |studentExist != null ) {
             redirectAttrs
-                    .addFlashAttribute("error", "El DNI introducido no es valido")
+                    .addFlashAttribute("error", "El DNI introducido no es valido o esta repetido")
                     .addFlashAttribute("clase", "warning");
             return "redirect:/ver-alumnos";
         } else {
