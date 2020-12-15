@@ -90,10 +90,10 @@
                     <h2 class="mx-auto text-uppercase">Listado de notas</h2>
                 </nav>
 
-                <div th:if="${mensaje != null}" class="alert alert-primary mr-sm-2" role="alert">
+                <div th:if="${mensaje != null}" class="alert alert-primary mt-5" role="alert">
                     <p th:text="${mensaje}"></p>
                 </div>
-                <div class="alert alert-danger mr-sm-2" role="alert" th:text="${error}" th:if="${error != null}"></div>
+                <div class="alert alert-danger mt-5" role="alert" th:text="${error}" th:if="${error != null}"></div>
                 
                 <button class="btn mb-2" data-toggle="modal" data-target="#modalAgregarEstudiante"
                     data-placement="right" title="Agregar nuevas notas">Nuevo</button>

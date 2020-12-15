@@ -92,10 +92,10 @@
                 <nav id="nav-estudiantes" class="nav-cursos navbar navbar-light text-light mx-auto mt-3">
                     <h2 class="mx-auto text-uppercase">Listado de estudiantes</h2>
                 </nav>
-                <div th:if="${mensaje != null}" class="alert alert-primary mr-sm-2" role="alert">
+                <div th:if="${mensaje != null}" class="alert alert-primary mt-5" role="alert">
                     <p th:text="${mensaje}"></p>
                 </div>
-                <div class="alert alert-danger mr-sm-2" role="alert" th:text="${error}" th:if="${error != null}"></div>
+                <div class="alert alert-danger mt-5" role="alert" th:text="${error}" th:if="${error != null}"></div>
                 
                 <form class="form-inline mt-5">
                     <input class="form-control mr-sm-2 light-table-filter" data-table="order-table" type="search" placeholder="Buscar alumno" aria-label="Search">
