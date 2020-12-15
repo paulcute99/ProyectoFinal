@@ -22,6 +22,7 @@ h2{
     width: 20%;
     height: 100vh; 
     background: #09384b8c;
+    cursor: pointer;
 }
 
 .list-group-item:hover{
@@ -100,20 +101,16 @@ footer{
 }
 
 #nav-cursos{
-    background-image: url(img/pizarra-cursos.jpg);
+    background-image: url(/images/pizarra-cursos.jpg);
     background-size: cover;
     border-radius: 8px;
 }
 
-
 #nav-estudiantes{
-    
-    background-image: url(img/pizarra-cursos.jpg);
-    
+    background-image: url(/images/pizarra-cursos.jpg);
     background-size: cover; 
     border-radius: 8px;      
 }
-
 
 #listado-estudiantes{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -135,8 +132,7 @@ label{
     border-radius: 8px;
 }
 
-#icon-buscar{
-    background-color: rgba(15, 52, 63, 0.39);
-    border-radius: 2px;
-}
+.table tr:hover{
+    background-color: #09384b8c;
+  }
 

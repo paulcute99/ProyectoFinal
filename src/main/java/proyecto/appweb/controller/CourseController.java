@@ -47,16 +47,12 @@ public class CourseController {
             bindingResult
                     .rejectValue("nombre", "error.course",
                             "El nombre del curso ya existe");
-            redirectAttrs
-                    .addFlashAttribute("nombre", "El nombre del curso ya existe")
-                    .addFlashAttribute("clase", "success");
         }
         if (bindingResult.hasErrors()) {
-            System.out.print(bindingResult.toString());
-            bindingResult
-                    .rejectValue("nombre", "error.course",
-                            "El nombre del curso ya existe");
-            return "redirect:/formularios-curso";
+            redirectAttrs
+                    .addFlashAttribute("error", "El nombre del curso esta repetido. Por favor introduzca otro nombre")
+                    .addFlashAttribute("clase", "warning");
+            return "redirect:/ver-cursos";
         } else {
             redirectAttrs
                     .addFlashAttribute("mensaje", "El curso se ha guardado correctamen")

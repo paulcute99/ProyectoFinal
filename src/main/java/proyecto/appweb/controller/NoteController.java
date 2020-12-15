@@ -57,12 +57,14 @@ public class NoteController {
 
         if (bindingResult.hasErrors()) {
             System.out.print(bindingResult.toString());
-            bindingResult
-                    .rejectValue("Nota", "error.note",
-                            "No se  ha podido guardar la nota del estudiante");
+            redirectAttrs
+                    .addFlashAttribute("error", "La nota no se ha podido guardar")
+                    .addFlashAttribute("clase", "success");
             return "redirect:/ver-trimestres";
         } else {
-
+            redirectAttrs
+                    .addFlashAttribute("mensaje", "La nota se ha guardado correctamen")
+                    .addFlashAttribute("clase", "success");
             noteService.saveNote(note);
         }
 
@@ -74,12 +76,15 @@ public class NoteController {
 
         if (bindingResult.hasErrors()) {
             System.out.print(bindingResult.toString());
-            bindingResult
-                    .rejectValue("Nota", "error.note",
-                            "No se  ha podido guardar la nota del estudiante");
+            redirectAttrs
+                    .addFlashAttribute("error", "La nota no se ha podido guardar")
+                    .addFlashAttribute("clase", "success");
             return "redirect:/formularios-curso/students/{id_curso}";
         } else {
 
+            redirectAttrs
+                    .addFlashAttribute("mensaje", "La nota se ha guardado correctamen")
+                    .addFlashAttribute("clase", "success");
             noteService.saveNote(note);
             noteService.save(id_estudiante, note);
         }
@@ -91,7 +96,7 @@ public class NoteController {
     public String deleteNote(@PathVariable String id_estudiante, @ModelAttribute Note note, Model model, RedirectAttributes redirectAttrs) {
 
         redirectAttrs
-                .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
+                .addFlashAttribute("mensaje", "La nota se ha eleminado correctamente")
                 .addFlashAttribute("clase", "warning");
         noteService.removeNote(id_estudiante, note);
         noteService.deleteNote(note);
@@ -103,7 +108,7 @@ public class NoteController {
     public String deleteNotes(@ModelAttribute Note note, Model model, RedirectAttributes redirectAttrs) {
 
         redirectAttrs
-                .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
+                .addFlashAttribute("mensaje", "La nota se ha eleminado correctamente")
                 .addFlashAttribute("clase", "warning");
         noteService.deleteNote(note);
 
@@ -111,16 +116,19 @@ public class NoteController {
     }
 
     @PostMapping(path = "/edit_note/{id}")
-    public String editAndSaveNotes(@PathVariable String id, @ModelAttribute @Valid Note note, Model model, BindingResult bindingResult) {
+    public String editAndSaveNotes(@PathVariable String id, @ModelAttribute @Valid Note note, Model model, BindingResult bindingResult,RedirectAttributes redirectAttrs) {
         System.out.print(id);
         if (bindingResult.hasErrors()) {
             System.out.print(bindingResult.toString());
-            bindingResult
-                    .rejectValue("Edit", "error.student",
-                            "Error al editar la nota");
+             redirectAttrs
+                .addFlashAttribute("error", "La nota se ha actualizado correctamente")
+                .addFlashAttribute("clase", "warning");
             return "redirect:/formularios-curso/students/{id_curso}";
         } else {
 
+            redirectAttrs
+                .addFlashAttribute("mensaje", "La nota se ha actualizado correctamente")
+                .addFlashAttribute("clase", "warning");
             noteService.saveNote(note);
         }
         return "redirect:/ver-trimestres";
@@ -133,18 +141,20 @@ public class NoteController {
         model.addAttribute("id_nota", nota);
         return "editar-notas";
     }
-    
-       @PostMapping(path = "/edit_notes/{id}")
-    public String editAndSaveNotesById(@PathVariable String id, @ModelAttribute @Valid Note note, Model model, BindingResult bindingResult) {
+
+    @PostMapping(path = "/edit_notes/{id}")
+    public String editAndSaveNotesById(@PathVariable String id, @ModelAttribute @Valid Note note, Model model, BindingResult bindingResult,RedirectAttributes redirectAttrs) {
         System.out.print(id);
         if (bindingResult.hasErrors()) {
             System.out.print(bindingResult.toString());
-            bindingResult
-                    .rejectValue("Edit", "error.student",
-                            "Error al editar la nota");
+            redirectAttrs
+                .addFlashAttribute("error", "La nota se ha actualizado correctamente")
+                .addFlashAttribute("clase", "warning");
             return "redirect:/formularios-curso/students/{id_curso}";
         } else {
-
+             redirectAttrs
+                .addFlashAttribute("mensaje", "La nota se ha actualizado correctamente")
+                .addFlashAttribute("clase", "warning");
             noteService.saveNote(note);
         }
         return "redirect:/ver-alumnos";

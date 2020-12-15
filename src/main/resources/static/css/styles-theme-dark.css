@@ -1,126 +1,135 @@
 body{
-  font-family: 'Roboto', sans-serif;
-  background-color: #222430; 
-  color: white;
-}
-
-table.table{
- border-collapse: collapse;
-  background-color: 222430;
-  width: 100%;
-  height: 50%;
-  float: center;
-  margin-top: 0;
-}
-
-.thead-dark, tr, th{
-  background-color: rgb(151, 149, 144);
-  color: whitesmoke;
-}
-
-
-#sidebar {
-  margin-top: 0%;
-  width: 20%;
-  height: 100vh; 
-  background: #363846e3;
-} 
-
-.container{
-  margin-top: 0%;
-}
-
-h2{
-  font-family: Impact, Charcoal, sans-serif;
-  margin-top: 5%;
-  margin-bottom: 2%;
-}
-
-.p-2{
-  background: #222430;
-  text-align: center;
-  height: 9%; 
-  padding: 0;
-}
-
-.nombre{ 
-  margin-top: 0px;
-  height: 4%;
-  text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.menu-principal{
-  background: gray;
-  padding-top: 5px;
-  height: 6%;
-  text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-shadow: 2px 8px 9px #000000; 
-}
-
-button.btn{
-  border-bottom: 5px solid #000000;
-  border-radius: 12px;   
-  color: #fff;
-  cursor: pointer;
-  display: block;  
-  font-family: 'Raleway', Arial, Helvetica;
-  font-size: 14px;
-  text-align: center;
-  transition: all 0.2s ease 0s;
-}
-
-button.btn{
-  background-color: gray;
-}
-
-button.btn.mb-2{
-  background-color: gray;
-  margin-top: 3%;
-}
- 
-#nav-estudiantes{
-  background-image: url(img/pizarra-cursos.jpg);
-  background-size: cover; 
-  border-radius: 8px;      
-}
-
-#listado-estudiantes{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-shadow: 3px 2px 3px #f0eeee;
-}
-
-.modal-header{
-  background-color: #222430;
-}
-
-#profile-items{
-  background-color: #41350db2;
-}
-
-footer{
-  background: rgba(128, 128, 128, 0.973);
-}
-
-#profile-items{
-  background-color: #363846e3;
-}
-
-.nav-link:hover{
-  background: #17181fe3;
+    font-family: 'Roboto', sans-serif;
+    background-color: #222430; 
+    color: white;
   }
   
-  .list-group-item{
-      background-color: #363846e3;
+  table.table{
+   border-collapse: collapse;
+    background-color: 222430;
+    width: 100%;
+    height: 14%;
+    float: center;
+    margin-top: 0;
   }
 
-  .list-group-item:hover{
-      background-color:  #17181fe3;
+  table, tr, th{
+    border-bottom: 3px solid gray;
+  }
+  
+  .thead-dark, tr, th{
+    background-color: rgb(151, 149, 144);
+    color: whitesmoke;
   }
 
-  #nav-cursos{
-      background-image: url(img/pizarra-cursos.jpg);
-      background-size: cover;
-      border-radius: 8px;
+  
+  #sidebar {
+    margin-top: 0%;
+    width: 20%;
+    height: 100vh; 
+    background: #363846e3;
+    cursor: pointer;
+  } 
+  
+  .container{
+    margin-top: 0%;
+  }
+  
+  h2{
+    font-family: Impact, Charcoal, sans-serif;
+    margin-top: 5%;
+    margin-bottom: 2%;
+  }
+  
+  .p-2{
+    background: #222430;
+    text-align: center;
+    height: 9%; 
+    padding: 0;
+  }
+  
+  .nombre{ 
+    margin-top: 0px;
+    height: 4%;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .menu-principal{
+    background: gray;
+    padding-top: 5px;
+    height: 6%;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 2px 8px 9px #000000; 
+  }
+  
+  button.btn{
+    border-bottom: 5px solid #000000;
+    border-radius: 12px;   
+    color: #fff;
+    cursor: pointer;
+    display: block;  
+    font-family: 'Raleway', Arial, Helvetica;
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.2s ease 0s;
+  }
+  
+  button.btn{
+    background-color: gray;
+  }
+  
+  button.btn.mb-2{
+    background-color: gray;
+    margin-top: 3%;
+  }
+   
+  #nav-estudiantes{
+    background-image: url(/images/pizarra-cursos.jpg);
+    background-size: cover; 
+    border-radius: 8px;      
+  }
+  
+  #listado-estudiantes{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 3px 2px 3px #f0eeee;
+  }
+  
+  .modal-header{
+    background-color: #222430;
+  }
+  
+  #profile-items{
+    background-color: #41350db2;
+  }
+  
+  footer{
+    background: rgba(128, 128, 128, 0.973);
+  }
+
+  #profile-items{
+    background-color: #363846e3;
+  }
+
+  .nav-link:hover{
+    background: #17181fe3;
+    }
+    
+    .list-group-item{
+        background-color: #363846e3;
+    }
+
+    .list-group-item:hover{
+        background-color:  #17181fe3;
+    }
+
+    #nav-cursos{
+        background-image: url(/images/pizarra-cursos.jpg);
+        background-size: cover;
+        border-radius: 8px;
+    }
+
+  table tr:hover{
+    background-color: rgb(121, 129, 121);
   }

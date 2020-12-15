@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style-add-student.css}"  id="tema-original">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style-add-student.css}" id="tema-original">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -46,37 +46,37 @@
                         <i class="fa fa-adjust mr-3 mb-3 mt-2"></i>Temas
                     </a>
                     <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a  id="trigger" class="list-group-item list-group-item-action text-light">
+                        <a id="trigger" class="list-group-item list-group-item-action text-light">
                             Tema summer mode
                         </a>
-                        <a  id="dark-mode" class="list-group-item list-group-item-action text-light">
+                        <a id="dark-mode" class="list-group-item list-group-item-action text-light">
                             Tema dark mode
                         </a>
-                        <a id="temaOri" class="list-group-item list-group-item-action text-light" >
+                        <a id="temaOri" class="list-group-item list-group-item-action text-light">
                             Tema original
                         </a>
                     </div>
                 </div>
             </div>
-            <a th:href="@{/home}"  class="nav-link  text-light">
+            <a th:href="@{/home}" class="nav-link  text-light">
                 <i class="fa fa-power-off mr-3 mb-3 mt-2"></i>Cerrar sesión
             </a>
         </div>
 
         <!--Script para cambiar a tema summer-->
-        <script th:inline="javascript">           
-                document.getElementById("trigger").onclick = function () {
-                    document.getElementById("tema-original").href = /*[[@{/css/styles-theme1.css}]]*/;
-                };
+        <script th:inline="javascript">
+            document.getElementById("trigger").onclick = function () {
+                document.getElementById("tema-original").href = /*[[@{/css/styles-theme1.css}]]*/;
+            };
         </script>
-    
+
         <!--Script para cambiar a tema oscuro-->
         <script th:inline="javascript">
-            
+
             document.getElementById("dark-mode").onclick = function () {
                 document.getElementById("tema-original").href = /*[[@{/css/styles-theme-dark.css}]]*/;
             };
-             
+
         </script>
 
         <!--Script para cambiar a tema original-->
@@ -92,6 +92,10 @@
                 <nav id="nav-cursos" class="nav-cursos navbar navbar-light text-light mx-auto mt-3">
                     <h2 class="mx-auto text-uppercase" style="font-size:50px">Listado de cursos</h2>
                 </nav>
+                <div th:if="${mensaje != null}" class="alert alert-primary mt-5" role="alert">
+                    <p th:text="${mensaje}"></p>
+                </div>
+                <div class="alert alert-danger mt-5" role="alert" th:text="${error}" th:if="${error != null}"></div>
                 <form class="form-inline mt-5">
                     <input class="form-control mr-sm-2 light-table-filter" data-table="order-table" type="search"
                         placeholder="Buscar curso" aria-label="Search">
@@ -101,7 +105,7 @@
                     title="Agregar un nuevo curso">Nuevo</button>
                 <div class="table-responsive">
                     <form th:object="${curso}">
-                        <table id=estilos class="table table-bordered table-hover table-striped order-table">
+                        <table id=estilos class="table table-bordered  table-striped order-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th class="text-uppercase">Nombre</th>
@@ -157,6 +161,7 @@
                 </div>
                 <!-- Modal body -->
                 <form th:action="@{/save}" method="post" th:object="${curso}">
+                   
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
@@ -178,11 +183,37 @@
             </div>
         </div>
     </div>
+
+      <!--Modal de aviso-->
+      <div class="modal fade" id="modalAviso">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase text-light"><i class="fa fa-exclamation-circle mr-3 text-light" aria-hidden="true"></i>Aviso
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    El alumno ha sido añadido
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button">Aceptar</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="page-footer font-small">
         <div class="footer-copyright text-center py-3 text-light"> 2020 Addnotes
             <img th:src="@{/images/logo.png}" alt="Logo" style="width:50px;">
         </div>
     </footer>
+
+    <script>
+      
+    </script>
 
     <!-- Script para buscador de alumnos-->
     <script type="text/javascript">

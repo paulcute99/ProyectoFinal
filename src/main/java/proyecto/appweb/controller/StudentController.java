@@ -64,20 +64,19 @@ public class StudentController {
         boolean nif = NifValido(student.getDNI());
         System.out.print(id_curso);
         if (studentExist != null) {
-            bindingResult
-                    .rejectValue("DNI", "error.course",
-                            "El DNI del estudiante ya existe");
             redirectAttrs
-                    .addFlashAttribute("DNI", "El DNI del estudiante ya existe")
-                    .addFlashAttribute("clase", "success");
+                    .addFlashAttribute("error", "El DNI introducido no es valido")
+                    .addFlashAttribute("clase", "warning");
         }
         if (nif == false) {
-            bindingResult
-                    .rejectValue("DNI", "error.student",
-                            "El DNI del estudiante ya existe");
+            redirectAttrs
+                    .addFlashAttribute("error", "El DNI introducido no es valido")
+                    .addFlashAttribute("clase", "warning");
             return "redirect:/ver-cursos/alumnos/{id_curso}";
         } else {
-
+            redirectAttrs
+                    .addFlashAttribute("mensaje", "Se ha guardado el estudiante correctamente")
+                    .addFlashAttribute("clase", "warning");
             studentService.saveStudent(student);
             studentService.addStudent(id_curso, student);
         }
@@ -88,21 +87,21 @@ public class StudentController {
     @RequestMapping(path = "/save-student")
     public String createNewStudent(@ModelAttribute Student student, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         Student studentExist = studentService.findStudentByDNI(student.getDNI());
-         boolean nif = NifValido(student.getDNI());
+        boolean nif = NifValido(student.getDNI());
         if (studentExist != null) {
-            bindingResult
-                    .rejectValue("DNI", "error.course",
-                            "El DNI del estudiante ya existe");
             redirectAttrs
-                    .addFlashAttribute("DNI", "El DNI del estudiante ya existe")
-                    .addFlashAttribute("clase", "success");
+                    .addFlashAttribute("error", "El DNI introducido no es valido")
+                    .addFlashAttribute("clase", "warning");
         }
         if (nif == false) {
-            bindingResult
-                    .rejectValue("DNI", "error.student",
-                            "El DNI introducido no es valido");
+            redirectAttrs
+                    .addFlashAttribute("error", "El DNI introducido no es valido")
+                    .addFlashAttribute("clase", "warning");
             return "redirect:/ver-alumnos";
         } else {
+            redirectAttrs
+                    .addFlashAttribute("mensaje", "Se ha guardado el estudiante correctamente")
+                    .addFlashAttribute("clase", "warning");
             studentService.saveStudent(student);
         }
         return "redirect:/ver-alumnos";
@@ -112,7 +111,7 @@ public class StudentController {
     public String deleteStudent(@ModelAttribute Student student, Model model, RedirectAttributes redirectAttrs) {
 
         redirectAttrs
-                .addFlashAttribute("mensaje", "Se ha eleminado correctamente")
+                .addFlashAttribute("mensaje", "Se ha eleminado el estudiante correctamente")
                 .addFlashAttribute("clase", "warning");
         studentService.deleteStudent(student);
 
@@ -132,15 +131,18 @@ public class StudentController {
     }
 
     @PostMapping(path = "/edit_student/{id}")
-    public String editAndSaveStudent(@PathVariable String id, @ModelAttribute @Valid Student student, Model model, BindingResult bindingResult) {
-        System.out.print(id);
-        if (bindingResult.hasErrors()) {
-            System.out.print(bindingResult.toString());
-            bindingResult
-                    .rejectValue("Edit", "error.student",
-                            "Error al editar al alumno");
+    public String editAndSaveStudent(@PathVariable String id, @ModelAttribute @Valid Student student, Model model, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
+        boolean nif = NifValido(student.getDNI());
+        if (nif == false) {
+            redirectAttrs
+                    .addFlashAttribute("error", "No se ha podido actualizar el estudiante correctamente")
+                    .addFlashAttribute("clase", "warning");
             return "redirect:/ver-alumnos";
         } else {
+
+            redirectAttrs
+                    .addFlashAttribute("mensaje", "Se ha editado el estudiante correctamente")
+                    .addFlashAttribute("clase", "warning");
             studentService.updateStudent(id, student);
         }
         return "redirect:/ver-alumnos";
@@ -155,15 +157,18 @@ public class StudentController {
     }
 
     @PostMapping(path = "/edit_students/{id}")
-    public String editAndSaveStudentId(@PathVariable String id, @ModelAttribute @Valid Student student, Model model, BindingResult bindingResult) {
-        System.out.print(id);
-        if (bindingResult.hasErrors()) {
-            System.out.print(bindingResult.toString());
-            bindingResult
-                    .rejectValue("Edit", "error.student",
-                            "Error al editar al alumno");
+    public String editAndSaveStudentId(@PathVariable String id, @ModelAttribute @Valid Student student, Model model, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
+
+        boolean nif = NifValido(student.getDNI());
+        if (nif == false) {
+            redirectAttrs
+                    .addFlashAttribute("error", "No se ha podido actualizar el estudiante correctamente")
+                    .addFlashAttribute("clase", "warning");
             return "redirect:/ver-alumnos";
         } else {
+            redirectAttrs
+                    .addFlashAttribute("mensaje", "Se ha actualizado el estudiante correctamente")
+                    .addFlashAttribute("clase", "warning");
             studentService.updateStudent(id, student);
         }
         return "redirect:/ver-cursos";
