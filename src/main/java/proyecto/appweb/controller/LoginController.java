@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import proyecto.appweb.model.User;
 import proyecto.appweb.service.UserService;
 
@@ -42,13 +43,16 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
                             "Ese email ya esta registrado en la base de datos");
+             redirectAttrs
+                    .addFlashAttribute("error", "El nombre del curso esta repetido. Por favor introduzca otro nombre")
+                    .addFlashAttribute("clase", "warning");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("signup");
